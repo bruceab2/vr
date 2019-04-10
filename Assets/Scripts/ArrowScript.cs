@@ -5,6 +5,7 @@ using UnityEngine;
 public class ArrowScript : MonoBehaviour
 {
     public int damage;
+    public Rigidbody arrowObj;
 
     private void OnTriggerExit(Collider other)
     {
@@ -15,7 +16,10 @@ public class ArrowScript : MonoBehaviour
             // to prevent from calling twice from same arrow
             GetComponent<Collider>().isTrigger = false;
             Debug.Log("health :" + state.health.ToString());
+
         }
+        stick();
+
     }
 
     // Start is called before the first frame update
@@ -28,5 +32,10 @@ public class ArrowScript : MonoBehaviour
     void Update()
     {
         
+    }
+
+    void stick()
+    {
+        arrowObj.constraints = RigidbodyConstraints.FreezeAll;
     }
 }

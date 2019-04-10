@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerState : MonoBehaviour
 {
-    int health = 100;
+    public int health = 100;
 
     
 
@@ -18,5 +18,18 @@ public class PlayerState : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void hit(int damage)
+    {
+        health -= damage;
+        if (health <= 0)
+        {
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+#else
+            Application.Quit();
+#endif
+        }
     }
 }
